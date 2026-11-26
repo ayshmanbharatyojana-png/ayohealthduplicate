@@ -146,14 +146,14 @@ const chartOfAccounts = [
   ] },
 ]
 
-export function Accounting() {
+export function UWINDailySession() {
   const navigate = useNavigate()
 
   return (
     <div>
       <PageHeader
-        crumbs={[{ label: "Accounting" }]}
-        title="Accounting"
+        crumbs={[{ label: "UWIN Daily Session" }]}
+        title="UWINDailySession"
         description="Manage your financial transactions, accounts, and reports."
         actions={
           <>
