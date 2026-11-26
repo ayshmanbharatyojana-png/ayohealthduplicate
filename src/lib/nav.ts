@@ -33,7 +33,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
   {
-    label: "2.Accounting",
+    label: "Accounting",
     href: "/accounting",
     icon: Calculator,
     children: [
@@ -42,7 +42,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "UWIN",
+    label: "Sales",
     href: "/sales",
     icon: ShoppingBag,
     children: [
@@ -55,7 +55,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Maternal Health",
+    label: "Purchases",
     href: "/purchases",
     icon: ShoppingCart,
     children: [
@@ -68,7 +68,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "NCD Screening",
+    label: "Banking",
     href: "/banking",
     icon: Landmark,
     children: [
@@ -80,7 +80,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "DVDMS",
+    label: "Expenses",
     href: "/expenses",
     icon: Receipt,
     children: [
@@ -92,7 +92,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Ayushman Bharat",
+    label: "Payroll",
     href: "/payroll",
     icon: Users,
     children: [
@@ -104,7 +104,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "UPKSK",
+    label: "Inventory",
     href: "/inventory",
     icon: Package,
     children: [
@@ -119,7 +119,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "i-Got Karmayogi",
+    label: "Projects",
     href: "/projects",
     icon: FolderKanban,
     children: [
@@ -135,7 +135,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Delivery",
+    label: "Reports",
     href: "/reports",
     icon: BarChart3,
     children: [
@@ -153,7 +153,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Arogya Mela",
+    label: "Tax",
     href: "/tax",
     icon: Percent,
     children: [
@@ -196,7 +196,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Others",
+    label: "Contacts",
     href: "/contacts",
     icon: Contact,
     children: [
