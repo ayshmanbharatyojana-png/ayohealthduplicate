@@ -37,9 +37,9 @@ export const navItems: NavItem[] = [
   { label: "Immunization", href: "/accounting", icon: Calculator,
     children: [
       { label: "UWIN Daily Session", href: "/uwindailysession" },
-      { label: "UWIN Coverage", href: "/UWINCoverage" },
-      { label: "HMIS vs UWIN", href: "/HMISvsUWIN" },
-      { label: "Wastage Report", href: "/WastageReport" },
+      { label: "UWIN Coverage", href: "/uwincoverage" },
+      { label: "HMIS vs UWIN", href: "/hmisvsuwin" },
+      { label: "Wastage Report", href: "/wastagereport" },
     ],
   },
   { label: "Delivery", href: "/sales", icon: ShoppingBag, 
