@@ -38,6 +38,7 @@ export const navItems: NavItem[] = [
     children: [
       { label: "UWIN Daily Session", href: "/accounting" },
       { label: "UWIN Coverage", href: "/accounting" },
+      { label: "HMIS vs UWIN", href: "/accounting" },
       { label: "Wastage Report", href: "/accounting/journal-entries"},
     ],
   },
