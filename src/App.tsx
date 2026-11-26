@@ -6,6 +6,7 @@ import { Dashboard } from "@/pages/Dashboard"
 import { Accounting } from "@/pages/Accounting"
 import { JournalEntries } from "@/pages/accounting/JournalEntries"
 import { ComingSoon } from "@/pages/ComingSoon"
+import { UWINDailySession } from "@/pages/UWINDailySession"
 
 import { Invoices } from "@/pages/sales/Invoices"
 import { InvoiceDetail } from "@/pages/sales/InvoiceDetail"
@@ -127,6 +128,7 @@ function App() {
         <Route path="/accounting" element={<Accounting />} />
         <Route path="/accounting/journal-entries" element={<JournalEntries />} />
 
+        <Route path="/uwindailysession" element={<UWINDailySession />} />
         <Route path="/sales" element={<Invoices />} />
         <Route path="/sales/invoices" element={<Invoices />} />
         <Route path="/sales/invoices/:id" element={<InvoiceDetail />} />
