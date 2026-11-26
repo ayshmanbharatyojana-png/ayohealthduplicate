@@ -32,13 +32,14 @@ export interface NavItem {
 }
 
 
-export const navItems: NavItem[] = [{ label: "Dashboard", href: "/", icon: LayoutDashboard },
-  { label: "Accounting", href: "/accounting", icon: Calculator,
+export const navItems: NavItem[] = [
+  { label: "Dashboard", href: "/", icon: LayoutDashboard },
+  { label: "Immunization", href: "/accounting", icon: Calculator,
     children: [
       { label: "Overview", href: "/accounting" }, { label: "Journal Entries", href: "/accounting/journal-entries"},
     ],
   },
-  { label: "Sales", href: "/sales", icon: ShoppingBag, 
+  { label: "Maternal Health", href: "/sales", icon: ShoppingBag, 
     children: [
       { label: "Invoices", href: "/sales" },
       { label: "Estimates", href: "/sales/estimates" },
@@ -48,7 +49,7 @@ export const navItems: NavItem[] = [{ label: "Dashboard", href: "/", icon: Layou
       { label: "Products & Services", href: "/sales/products" },
     ],
   },
-  { label: "Purchases", href: "/purchases", icon: ShoppingCart,
+  { label: "NCD Screening", href: "/purchases", icon: ShoppingCart,
     children: [
       { label: "Bills", href: "/purchases" },
       { label: "Purchase Orders", href: "/purchases/purchase-orders" },
@@ -58,7 +59,7 @@ export const navItems: NavItem[] = [{ label: "Dashboard", href: "/", icon: Layou
       { label: "Recurring Bills", href: "/purchases/recurring-bills" },
     ],
   },
-  { label: "Banking", href: "/banking", icon: Landmark,
+  { label: "DVDMS", href: "/banking", icon: Landmark,
     children: [
       { label: "Bank Accounts", href: "/banking/accounts" },
       { label: "Bank Feed", href: "/banking/feed" },
@@ -67,7 +68,7 @@ export const navItems: NavItem[] = [{ label: "Dashboard", href: "/", icon: Layou
       { label: "Statements", href: "/banking/statements" },
     ],
   },
-  { label: "Expenses", href: "/expenses", icon: Receipt,
+  { label: "iGot Karmayogi", href: "/expenses", icon: Receipt,
     children: [
       { label: "Expense Claims", href: "/expenses" },
       { label: "Categories", href: "/expenses/categories" },
