@@ -7,6 +7,7 @@ import { Accounting } from "@/pages/Accounting"
 import { JournalEntries } from "@/pages/accounting/JournalEntries"
 import { ComingSoon } from "@/pages/ComingSoon"
 import { UWINDailySession } from "@/pages/UWINDailySession"
+import { ArogyaMela } from "@/pages/ArogyaMela/"
 
 import { Invoices } from "@/pages/sales/Invoices"
 import { InvoiceDetail } from "@/pages/sales/InvoiceDetail"
