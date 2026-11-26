@@ -130,7 +130,7 @@ function App() {
         <Route path="/accounting/journal-entries" element={<JournalEntries />} />
 
         <Route path="/uwindailysession" element={<UWINDailySession />} />
-        <Route path="/ArogyaMela" element={<ArogyaMela />} />
+        <Route path="/ArogyaMela/ArogyaMela" element={<ArogyaMela />} />
         <Route path="/sales" element={<Invoices />} />
         <Route path="/sales/invoices" element={<Invoices />} />
         <Route path="/sales/invoices/:id" element={<InvoiceDetail />} />
