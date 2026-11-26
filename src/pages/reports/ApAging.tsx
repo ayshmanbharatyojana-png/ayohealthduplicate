@@ -61,7 +61,7 @@ const overdueVendors = [
 
 const quickActions = ["Pay Bills", "Schedule Payments", "Vendor Statement", "Export Aging Report", "Configure Aging Periods"]
 
-export function ArogyaMela() {
+export function ApAging() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
 
   return (
