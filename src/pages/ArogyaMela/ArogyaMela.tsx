@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   LineChart, Line,
 } from "recharts"
-import { Users, Building2, MapPin, Stethoscope, CalendarDays, Download, Search } from "lucide-react"
+import { Users, Building2, MapPin, CalendarDays, Download, Search } from "lucide-react"
 import { PageHeader } from "@/components/shared/PageHeader"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
