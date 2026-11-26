@@ -61,15 +61,15 @@ const overdueVendors = [
 
 const quickActions = ["Pay Bills", "Schedule Payments", "Vendor Statement", "Export Aging Report", "Configure Aging Periods"]
 
-export function ApAging() {
+export function ArogyaMela() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
 
   return (
     <div>
       <PageHeader
-        crumbs={[{ label: "Reports", href: "/reports" }, { label: "AP Aging" }]}
-        title="AP Aging"
-        description="View your outstanding payables grouped by aging periods."
+        crumbs={[{ label: "Arogya Mela", href: "/reports" }, { label: "Day Wise Report" }]}
+        title="Daily Report"
+        description="View Facility Wise Report."
         actions={
           <>
             <Button variant="outline">As of 31 May 2025</Button>
