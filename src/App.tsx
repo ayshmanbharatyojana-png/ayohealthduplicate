@@ -185,7 +185,8 @@ function App() {
         <Route path="/projects/files" element={<FilesDocuments />} />
         <Route path="/projects/expenses" element={<ProjectExpenses />} />
         <Route path="/projects/invoices" element={<ProjectInvoices />} />
-
+        
+        <Route path="/ArogyaMela" element={<ArogyaMela />} />
         <Route path="/reports" element={<ReportsOverview />} />
         <Route path="/reports/sales" element={<SalesReports />} />
         <Route path="/reports/expenses" element={<ExpenseReports />} />
