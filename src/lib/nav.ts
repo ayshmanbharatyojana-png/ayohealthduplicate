@@ -42,7 +42,7 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: "Sales",
+    label: "Maternal Health",
     href: "/sales",
     icon: ShoppingBag,
     children: [
