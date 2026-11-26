@@ -17,9 +17,20 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-export interface NavChild {label: string href: string children?: NavChild[]}
 
-export interface NavItem {label: string href: string icon: LucideIcon children?: NavChild[]}
+export interface NavChild {
+  label: string
+  href: string
+  children?: NavChild[]
+}
+
+export interface NavItem {
+  label: string
+  href: string
+  icon: LucideIcon
+  children?: NavChild[]
+}
+
 
 export const navItems: NavItem[] = [{ label: "Dashboard", href: "/", icon: LayoutDashboard },
   { label: "Accounting", href: "/accounting", icon: Calculator,
