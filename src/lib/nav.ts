@@ -33,7 +33,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
   {
-    label: "Immunization",
+    label: "Accounting",
     href: "/accounting",
     icon: Calculator,
     children: [
