@@ -153,7 +153,7 @@ export function UWINDailySession() {
     <div>
       <PageHeader
         crumbs={[{ label: "UWIN Daily Session" }]}
-        title="UWINDailySession"
+        title="UWIN Daily Session"
         description="Manage your financial transactions, accounts, and reports."
         actions={
           <>
