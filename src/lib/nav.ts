@@ -39,7 +39,7 @@ export const navItems: NavItem[] = [
       { label: "Overview", href: "/accounting" }, { label: "Journal Entries", href: "/accounting/journal-entries"},
     ],
   },
-  { label: "Maternal Health", href: "/sales", icon: ShoppingBag, 
+  { label: "Delivery", href: "/sales", icon: ShoppingBag, 
     children: [
       { label: "Invoices", href: "/sales" },
       { label: "Estimates", href: "/sales/estimates" },
@@ -49,7 +49,7 @@ export const navItems: NavItem[] = [
       { label: "Products & Services", href: "/sales/products" },
     ],
   },
-  { label: "NCD Screening", href: "/purchases", icon: ShoppingCart,
+  { label: "Ayushman Bharat", href: "/purchases", icon: ShoppingCart,
     children: [
       { label: "Bills", href: "/purchases" },
       { label: "Purchase Orders", href: "/purchases/purchase-orders" },
@@ -59,7 +59,7 @@ export const navItems: NavItem[] = [
       { label: "Recurring Bills", href: "/purchases/recurring-bills" },
     ],
   },
-  { label: "DVDMS", href: "/banking", icon: Landmark,
+  { label: "NCD Screening", href: "/banking", icon: Landmark,
     children: [
       { label: "Bank Accounts", href: "/banking/accounts" },
       { label: "Bank Feed", href: "/banking/feed" },
@@ -68,7 +68,7 @@ export const navItems: NavItem[] = [
       { label: "Statements", href: "/banking/statements" },
     ],
   },
-  { label: "iGot Karmayogi", href: "/expenses", icon: Receipt,
+  { label: "DVDMS", href: "/expenses", icon: Receipt,
     children: [
       { label: "Expense Claims", href: "/expenses" },
       { label: "Categories", href: "/expenses/categories" },
@@ -77,7 +77,7 @@ export const navItems: NavItem[] = [
       { label: "Tax & Deductions", href: "/expenses/tax-deductions" },
     ],
   },
-  { label: "Payroll", href: "/payroll", icon: Users,
+  { label: "iGot Karmayogi", href: "/payroll", icon: Users,
     children: [
       { label: "Overview", href: "/payroll" },
       { label: "Employees", href: "/payroll/employees" },
@@ -86,7 +86,7 @@ export const navItems: NavItem[] = [
       { label: "Taxes & Deductions", href: "/payroll/taxes" },
     ],
   },
-  { label: "Inventory", href: "/inventory", icon: Package,
+  { label: "NPPCD", href: "/inventory", icon: Package,
     children: [
       { label: "Overview", href: "/inventory" },
       { label: "Items", href: "/inventory/items" },
@@ -98,7 +98,7 @@ export const navItems: NavItem[] = [
       { label: "Batch / Serial Numbers", href: "/inventory/batch-serial" },
     ],
   },
-  { label: "Projects", href: "/projects", icon: FolderKanban,
+  { label: "UPKSK", href: "/projects", icon: FolderKanban,
     children: [
       { label: "Overview", href: "/projects" },
       { label: "Tasks", href: "/projects/tasks" },
@@ -111,7 +111,7 @@ export const navItems: NavItem[] = [
       { label: "Invoices", href: "/projects/invoices" },
     ],
   },
-  { label: "Reports", href: "/reports", icon: BarChart3,
+  { label: "Arogya Mela", href: "/reports", icon: BarChart3,
     children: [
       { label: "Overview", href: "/reports" },
       { label: "Sales Reports", href: "/reports/sales" },
@@ -126,7 +126,7 @@ export const navItems: NavItem[] = [
       { label: "Tax Reports", href: "/reports/tax-reports" },
     ],
   },
-  { label: "Tax", href: "/tax", icon: Percent,
+  { label: "ABHA", href: "/tax", icon: Percent,
     children: [
       { label: "Overview", href: "/tax" },
       { label: "GST", href: "/tax/gst",
@@ -142,7 +142,7 @@ export const navItems: NavItem[] = [
           { label: "GSTR-3B", href: "/tax/gst/gstr-3b" },
         ],
       },
-      { label: "TDS", href: "/tax/tds",
+      { label: "Medlepar", href: "/tax/tds",
         children: [
           { label: "Dashboard", href: "/tax/tds" },
           { label: "Deductors", href: "/tax/tds/deductors" },
@@ -162,7 +162,7 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-  { label: "Contacts", href: "/contacts", icon: Contact,
+  { label: "NPCB", href: "/contacts", icon: Contact,
     children: [
       { label: "All Contacts", href: "/contacts" },
       { label: "Customers", href: "/contacts/customers" },
