@@ -1,9 +1,4 @@
-<option>All</option>{units.map(v => <option key={v}>{v}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-1 text-sm"><span className="text-muted-foreground">Facility</span>
-            <select className="h-10 rounded-md border bg-background px-3" value={facility} onChange={e => setFacility(e.target.value)}>
-              <option>All</option>{facilities.map(v => <option key={v}>{v}</option>)}
+<option>All</option>{facilities.map(v => <option key={v}>{v}</option>)}
             </select>
           </label>
           <label className="grid gap-1 text-sm"><span className="text-muted-foreground">Department</span>
@@ -130,7 +125,7 @@
           <p className="mt-3 text-xs text-muted-foreground">Showing up to 50 facilities. Total filtered records: {numberFormat.format(kpis.records)}.</p>
         </CardContent>
       </Card>
-      <p className="text-xs text-muted-foreground">Source: ArogyaMela CSV uploaded for this analysis. Total source records: 10,985; total patients: 37,007. No target-based achievement percentage is calculated because the source does not contain targets.</p>
+      <p className="text-xs text-muted-foreground">Source: public/data/ArogyaMela.csv. Records and patient totals are calculated from the CSV currently loaded. No target-based achievement percentage is calculated because the source does not contain targets.</p>
     </div>
   )
 }
