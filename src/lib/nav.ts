@@ -36,7 +36,9 @@ export const navItems: NavItem[] = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
   { label: "Immunization", href: "/accounting", icon: Calculator,
     children: [
-      { label: "Overview", href: "/accounting" }, { label: "Journal Entries", href: "/accounting/journal-entries"},
+      { label: "UWIN Daily Session", href: "/accounting" },
+      { label: "UWIN Coverage", href: "/accounting" },
+      { label: "Wastage Report", href: "/accounting/journal-entries"},
     ],
   },
   { label: "Delivery", href: "/sales", icon: ShoppingBag, 
