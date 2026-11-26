@@ -114,11 +114,11 @@ export const navItems: NavItem[] = [
       { label: "Invoices", href: "/projects/invoices" },
     ],
   },
-  { label: "Arogya Mela", href: "/reports", icon: BarChart3,
+  { label: "Arogya Mela", href: "/arogyamela", icon: BarChart3,
     children: [
       { label: "Overview", href: "/reports" },
       { label: "Sales Reports", href: "/reports/sales" },
-      { label: "AP Aging", href: "/reports/ap-aging" },
+      { label: "Arogya Mela", href: "/arogyamela" },
       { label: "AR Aging", href: "/reports/ar-aging" },
       { label: "Profit & Loss", href: "/reports/profit-loss" },
       { label: "Balance Sheet", href: "/reports/balance-sheet" },
