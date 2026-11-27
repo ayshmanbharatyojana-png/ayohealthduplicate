@@ -145,7 +145,7 @@ export const navItems: NavItem[] = [
     href: "/tax",
     icon: AbhaIcon,
     children: [
-      { label: "eKavach ABHA", href: "/DigitalHealthABHA" },
+      { label: "eKavach ABHA", href: "/DigitalHealthABHA/eKavachABHA" },
       { label: "UWIN Bal ABHA", href: "/tax/gst" },
     ],
   },
