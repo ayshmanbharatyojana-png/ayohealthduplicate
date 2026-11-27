@@ -1,3 +1,4 @@
+
 import { NavLink, useLocation } from "react-router-dom"
 import { Sparkles, LogIn, UserPlus } from "lucide-react"
 
@@ -30,35 +31,50 @@ function Logo() {
           </linearGradient>
         </defs>
       </svg>
-      <span className="text-lg font-bold tracking-tight text-foreground">Finovo</span>
+      <span className="text-lg font-bold tracking-tight text-foreground">
+        Finovo
+      </span>
     </div>
   )
 }
 
+// Exact route matching prevents /tax from matching /tax/tds.
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
-  return pathname === href || pathname.startsWith(href + "/")
+  return pathname === href
 }
 
-// A parent is active if the pathname matches its own href OR any descendant's
-// href — not just a prefix of its own href. Some children (e.g. "TDS Returns"
-// at /tax/tds-returns) live outside their parent's path prefix, so a plain
-// prefix check would wrongly report the parent inactive and collapse the menu.
+// Check whether a menu or one of its actual descendants
+// matches the current route.
 function subtreeActive(
   pathname: string,
   node: { href: string; children?: NavChild[] }
 ): boolean {
-  // Match the parent's own route exactly.
-  if (pathname === node.href) return true
+  if (isActive(pathname, node.href)) return true
 
-  // Expand the parent only when one of its actual children is active.
-  return node.children?.some((child) =>
-    subtreeActive(pathname, child)
-  ) ?? false
+  return (
+    node.children?.some((child) =>
+      subtreeActive(pathname, child)
+    ) ?? false
+  )
 }
-function NavChildItem({ child, pathname, onNavigate, depth }: { child: NavChild; pathname: string; onNavigate?: () => void; depth: number }) {
+
+function NavChildItem({
+  child,
+  pathname,
+  onNavigate,
+  depth,
+}: {
+  child: NavChild
+  pathname: string
+  onNavigate?: () => void
+  depth: number
+}) {
   const hasChildren = !!child.children?.length
-  const active = hasChildren ? subtreeActive(pathname, child) : pathname === child.href
+
+  const active = hasChildren
+    ? subtreeActive(pathname, child)
+    : isActive(pathname, child.href)
 
   return (
     <li>
@@ -67,15 +83,29 @@ function NavChildItem({ child, pathname, onNavigate, depth }: { child: NavChild;
         onClick={onNavigate}
         className={cn(
           "block truncate rounded-md px-2 py-1.5 text-[13px] font-medium transition-colors",
-          active ? "text-primary" : "text-muted-foreground hover:text-foreground"
+          active
+            ? "text-primary"
+            : "text-muted-foreground hover:text-foreground"
         )}
       >
         {child.label}
       </NavLink>
+
       {hasChildren && active && (
-        <ul className={cn("border-sidebar-border mt-0.5 flex flex-col gap-0.5 border-l pl-4", depth === 0 && "ml-1.5")}>
+        <ul
+          className={cn(
+            "border-sidebar-border mt-0.5 flex flex-col gap-0.5 border-l pl-4",
+            depth === 0 && "ml-1.5"
+          )}
+        >
           {child.children!.map((grandchild) => (
-            <NavChildItem key={grandchild.href} child={grandchild} pathname={pathname} onNavigate={onNavigate} depth={depth + 1} />
+            <NavChildItem
+              key={grandchild.href}
+              child={grandchild}
+              pathname={pathname}
+              onNavigate={onNavigate}
+              depth={depth + 1}
+            />
           ))}
         </ul>
       )}
@@ -83,17 +113,32 @@ function NavChildItem({ child, pathname, onNavigate, depth }: { child: NavChild;
   )
 }
 
-function NavContent({ onNavigate }: { onNavigate?: () => void }) {
+function NavContent({
+  onNavigate,
+}: {
+  onNavigate?: () => void
+}) {
   const { pathname } = useLocation()
+
+  // Find all matching top-level menus.
+  // Keep only the most specific matching menu open.
+  const activeItem = navItems
+    .filter((item) => subtreeActive(pathname, item))
+    .sort((a, b) => b.href.length - a.href.length)[0]
 
   return (
     <div className="flex h-full flex-col">
       <Logo />
+
       <nav className="flex-1 overflow-y-auto px-3 pb-2">
         <ul className="flex flex-col gap-0.5">
           {navItems.map((item) => {
-            const active = subtreeActive(pathname, item)
-            const showChildren = active && item.children
+            // Only one top-level menu can expand.
+            const active = activeItem?.href === item.href
+
+            const showChildren =
+              active && !!item.children?.length
+
             return (
               <li key={item.href}>
                 <NavLink
@@ -106,13 +151,26 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                       : "text-sidebar-foreground hover:bg-muted"
                   )}
                 >
-                  <item.icon className="size-4 shrink-0" strokeWidth={2} />
-                  <span className="truncate">{item.label}</span>
+                  <item.icon
+                    className="size-4 shrink-0"
+                    strokeWidth={2}
+                  />
+
+                  <span className="truncate">
+                    {item.label}
+                  </span>
                 </NavLink>
+
                 {showChildren && (
                   <ul className="mt-0.5 ml-[1.15rem] flex flex-col gap-0.5 border-l border-sidebar-border pl-4">
                     {item.children!.map((child) => (
-                      <NavChildItem key={child.href} child={child} pathname={pathname} onNavigate={onNavigate} depth={0} />
+                      <NavChildItem
+                        key={child.href}
+                        child={child}
+                        pathname={pathname}
+                        onNavigate={onNavigate}
+                        depth={0}
+                      />
                     ))}
                   </ul>
                 )}
@@ -126,6 +184,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
         <ul className="flex flex-col gap-0.5">
           {bottomNavItems.map((item) => {
             const active = isActive(pathname, item.href)
+
             return (
               <li key={item.href}>
                 <NavLink
@@ -138,8 +197,14 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                       : "text-sidebar-foreground hover:bg-muted"
                   )}
                 >
-                  <item.icon className="size-4 shrink-0" strokeWidth={2} />
-                  <span className="truncate">{item.label}</span>
+                  <item.icon
+                    className="size-4 shrink-0"
+                    strokeWidth={2}
+                  />
+
+                  <span className="truncate">
+                    {item.label}
+                  </span>
                 </NavLink>
               </li>
             )
@@ -147,7 +212,11 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
         </ul>
 
         <div className="my-3 h-px bg-sidebar-border" />
-        <p className="text-muted-foreground px-3 pb-1 text-[11px] font-semibold tracking-wide uppercase">Preview: Auth Pages</p>
+
+        <p className="text-muted-foreground px-3 pb-1 text-[11px] font-semibold tracking-wide uppercase">
+          Preview: Auth Pages
+        </p>
+
         <ul className="flex flex-col gap-0.5">
           <li>
             <NavLink
@@ -159,6 +228,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
               <span className="truncate">Sign In</span>
             </NavLink>
           </li>
+
           <li>
             <NavLink
               to="/signup"
@@ -176,11 +246,15 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
         <div className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/10 to-primary/[0.03] p-3.5">
           <div className="mb-1.5 flex items-center gap-1.5">
             <Sparkles className="size-4 text-primary" />
-            <span className="text-sm font-semibold text-foreground">Upgrade to Pro</span>
+            <span className="text-sm font-semibold text-foreground">
+              Upgrade to Pro
+            </span>
           </div>
+
           <p className="mb-3 text-xs text-muted-foreground">
             Unlock advanced features, workflows and custom reports.
           </p>
+
           <UpgradeDialog>
             <DialogTrigger asChild>
               <Button size="sm" className="w-full">
@@ -202,6 +276,10 @@ export function Sidebar() {
   )
 }
 
-export function SidebarMobileContent({ onNavigate }: { onNavigate?: () => void }) {
+export function SidebarMobileContent({
+  onNavigate,
+}: {
+  onNavigate?: () => void
+}) {
   return <NavContent onNavigate={onNavigate} />
 }
