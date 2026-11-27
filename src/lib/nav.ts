@@ -76,7 +76,7 @@ export const navItems: NavItem[] = [
     href: "/banking",
     icon: NcdScreeningIcon,
     children: [
-      { label: "Composit Score", href: "/banking/accounts" },
+      { label: "Composite Score", href: "/banking/accounts" },
       { label: "Login", href: "/banking/feed" },
       { label: "Screening", href: "/banking/reconciliation" },
       { label: "Treatment", href: "/banking/rules" },
