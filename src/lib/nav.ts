@@ -36,10 +36,10 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/", icon: DashboardIcon },
+  { label: "Health Dashboard", href: "/", icon: DashboardIcon },
 
   {
-    label: "Immunization",
+    label: "Immunization & Vaccine Wastage",
     href: "/accounting",
     icon: ImmunizationIcon,
     children: [
@@ -51,7 +51,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "Delivery",
+    label: "Maternal & Child Health",
     href: "/sales",
     icon: DeliveryIcon,
     children: [
@@ -65,7 +65,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "Ayushman Bharat",
+    label: "Ayushman Bharat PM-JAY",
     href: "/purchases",
     icon: AyushmanBharatIcon,
     children: [
@@ -76,7 +76,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "NCD Screening",
+    label: "NCD Screening & Management",
     href: "/banking",
     icon: NcdScreeningIcon,
     children: [
@@ -89,7 +89,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "DVDMS",
+    label: "Drugs & Supply Management",
     href: "/expenses",
     icon: DvdmsIcon,
     children: [
@@ -100,7 +100,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "iGot Karmayogi",
+    label: "Human Resource & Training",
     href: "/payroll",
     icon: KarmayogiIcon,
     children: [
@@ -112,7 +112,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "NPPCD",
+    label: "Deafness Control Programme",
     href: "/inventory",
     icon: NppcdIcon,
     children: [
@@ -122,7 +122,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "UPKSK",
+    label: "Health Infrastructure & Equipment",
     href: "/projects",
     icon: UpkskIcon,
     children: [
@@ -134,7 +134,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "Arogya Mela",
+    label: "CM Arogya Mela",
     href: "/arogyamela",
     icon: ArogyaMelaIcon,
     children: [
@@ -145,7 +145,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "ABHA",
+    label: "Digital Health & ABHA",
     href: "/tax",
     icon: AbhaIcon,
     children: [
@@ -155,7 +155,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "Medlepar",
+    label: "Medico-Legal Services",
     href: "/tax/tds",
     icon: MedleparIcon,
     children: [
@@ -167,7 +167,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    label: "NPCB",
+    label: "Blindness Control Programme",
     href: "/contacts",
     icon: NpcbIcon,
     children: [
