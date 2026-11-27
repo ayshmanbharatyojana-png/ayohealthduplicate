@@ -43,9 +43,8 @@ export const navItems: NavItem[] = [
     href: "/accounting",
     icon: ImmunizationIcon,
     children: [
-      { label: "UWIN Daily Session", href: "/uwindailysession" },
-      { label: "UWIN Coverage", href: "/uwincoverage" },
-      { label: "HMIS vs UWIN", href: "/hmisvsuwin" },
+      { label: "Coverage", href: "/uwindailysession" },
+      { label: "Dropout & Leftout", href: "/uwindailysession" },
       { label: "Wastage Report", href: "/wastagereport" },
     ],
   },
