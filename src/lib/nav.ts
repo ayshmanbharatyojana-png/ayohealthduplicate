@@ -108,18 +108,18 @@ export const navItems: NavItem[] = [
     children: [
       { label: "eKavach ABHA", href: "/tax" },
       { label: "UWIN Bal ABHA", href: "/tax/gst" },
-        ],
-      },
-      { label: "Medlepar", href: "/tax/tds",
-        children: [
-          { label: "Post Martem", href: "/tax/tds" },
-          { label: "Medico Legal", href: "/tax/tds/deductors" },
-          { label: "Doctor wise Status", href: "/tax/tds/deductees" },
-          { label: "Facility Doctor", href: "/tax/tds-returns" },
-        ],
-      },
     ],
   },
+   { label: "Medlepar", href: "/tax/tds", icon: Percent,
+    children: [
+      { label: "Post Martem", href: "/tax/tds" },
+      { label: "Medico Legal", href: "/tax/tds/deductors" },
+      { label: "Doctor wise Status", href: "/tax/tds/deductees" },
+      { label: "Facility Doctor", href: "/tax/tds-returns" },
+    ],
+   },
+ ],
+},
   { label: "NPCB", href: "/contacts", icon: Contact,
     children: [
       { label: "Report", href: "/contacts" },
