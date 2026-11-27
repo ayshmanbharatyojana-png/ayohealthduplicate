@@ -1,6 +1,6 @@
 
 import { NavLink, useLocation } from "react-router-dom"
-
+import { LogIn, UserPlus } from "lucide-react"
 import { navItems, type NavChild } from "@/lib/nav"
 import { cn } from "@/lib/utils"
 
