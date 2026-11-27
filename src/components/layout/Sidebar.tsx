@@ -44,11 +44,18 @@ function isActive(pathname: string, href: string) {
 // href — not just a prefix of its own href. Some children (e.g. "TDS Returns"
 // at /tax/tds-returns) live outside their parent's path prefix, so a plain
 // prefix check would wrongly report the parent inactive and collapse the menu.
-function subtreeActive(pathname: string, node: { href: string; children?: NavChild[] }): boolean {
-  if (isActive(pathname, node.href)) return true
-  return node.children?.some((c) => subtreeActive(pathname, c)) ?? false
-}
+function subtreeActive(
+  pathname: string,
+  node: { href: string; children?: NavChild[] }
+): boolean {
+  // Match the parent's own route exactly.
+  if (pathname === node.href) return true
 
+  // Expand the parent only when one of its actual children is active.
+  return node.children?.some((child) =>
+    subtreeActive(pathname, child)
+  ) ?? false
+}
 function NavChildItem({ child, pathname, onNavigate, depth }: { child: NavChild; pathname: string; onNavigate?: () => void; depth: number }) {
   const hasChildren = !!child.children?.length
   const active = hasChildren ? subtreeActive(pathname, child) : pathname === child.href
