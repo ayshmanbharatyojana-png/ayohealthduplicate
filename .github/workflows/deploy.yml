@@ -35,6 +35,9 @@ jobs:
       - name: Build React application
         run: npm run build
 
+      - name: Configure SPA routing for GitHub Pages
+        run: cp dist/index.html dist/404.html
+
       - name: Upload production files
         uses: actions/upload-pages-artifact@v3
         with:
