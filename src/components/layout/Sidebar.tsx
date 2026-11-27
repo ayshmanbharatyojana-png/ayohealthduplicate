@@ -1,12 +1,8 @@
 
 import { NavLink, useLocation } from "react-router-dom"
-import { Sparkles, LogIn, UserPlus } from "lucide-react"
 
 import { navItems, type NavChild } from "@/lib/nav"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { DialogTrigger } from "@/components/ui/dialog"
-import { UpgradeDialog } from "@/components/shared/UpgradeDialog"
 
 function Logo() {
   return (
@@ -211,17 +207,6 @@ function NavContent({
           </li>
         </ul>
       </nav>
-
-      {/* Upgrade section */}
-      <div className="p-3">
-        <div className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/10 to-primary/[0.03] p-3.5">
-          <div className="mb-1.5 flex items-center gap-1.5">
-            <Sparkles className="size-4 text-primary" />
-
-            <span className="text-sm font-semibold text-foreground">
-              Upgrade to Pro
-            </span>
-          </div>
 
           <p className="mb-3 text-xs text-muted-foreground">
             Unlock advanced features, workflows and custom reports.
