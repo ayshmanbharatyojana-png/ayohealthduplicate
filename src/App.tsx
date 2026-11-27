@@ -132,6 +132,7 @@ function App() {
 
         <Route path="/uwindailysession" element={<UWINDailySession />} />
         <Route path="/ArogyaMela/ArogyaMela" element={<ArogyaMela />} />
+        <Route path="DigitalHealthABHA/eKavachABHA" element={<eKavachABHA />} />
         <Route path="/sales" element={<Invoices />} />
         <Route path="/sales/invoices" element={<Invoices />} />
         <Route path="/sales/invoices/:id" element={<InvoiceDetail />} />
