@@ -1,40 +1,50 @@
-import {
-  LayoutDashboard,
-  Calculator,
-  ShoppingBag,
-  ShoppingCart,
-  Landmark,
-  Receipt,
-  Users,
-  Package,
-  FolderKanban,
-  BarChart3,
-  Percent,
-  Contact,
-  Settings,
-  Puzzle,
-  HelpCircle,
-  type LucideIcon,
-} from "lucide-react"
 
+import type { ComponentType, SVGProps } from "react";
+
+import {
+  DashboardIcon,
+  ImmunizationIcon,
+  DeliveryIcon,
+  AyushmanBharatIcon,
+  NcdScreeningIcon,
+  DvdmsIcon,
+  KarmayogiIcon,
+  NppcdIcon,
+  UpkskIcon,
+  ArogyaMelaIcon,
+  AbhaIcon,
+  MedleparIcon,
+  NpcbIcon,
+  SettingsPortalIcon,
+  IntegrationsIcon,
+  HelpSupportIcon,
+} from "../components/icons/custom-icons";
+
+type PortalIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 export interface NavChild {
-  label: string
-  href: string
-  children?: NavChild[]
+  label: string;
+  href: string;
+  children?: NavChild[];
 }
 
 export interface NavItem {
-  label: string
-  href: string
-  icon: LucideIcon
-  children?: NavChild[]
+  label: string;
+  href: string;
+  icon: PortalIcon;
+  children?: NavChild[];
 }
 
-
 export const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
-  { label: "Immunization", href: "/accounting", icon: Calculator,
+  {
+    label: "Dashboard",
+    href: "/",
+    icon: DashboardIcon,
+  },
+  {
+    label: "Immunization",
+    href: "/accounting",
+    icon: ImmunizationIcon,
     children: [
       { label: "UWIN Daily Session", href: "/uwindailysession" },
       { label: "UWIN Coverage", href: "/uwincoverage" },
@@ -42,7 +52,10 @@ export const navItems: NavItem[] = [
       { label: "Wastage Report", href: "/wastagereport" },
     ],
   },
-  { label: "Delivery", href: "/sales", icon: ShoppingBag, 
+  {
+    label: "Delivery",
+    href: "/sales",
+    icon: DeliveryIcon,
     children: [
       { label: "MaNTrA", href: "/sales" },
       { label: "HMIS", href: "/sales/estimates" },
@@ -52,14 +65,20 @@ export const navItems: NavItem[] = [
       { label: "JSY Payment", href: "/sales/products" },
     ],
   },
-  { label: "Ayushman Bharat", href: "/purchases", icon: ShoppingCart,
+  {
+    label: "Ayushman Bharat",
+    href: "/purchases",
+    icon: AyushmanBharatIcon,
     children: [
       { label: "Golden Card Drive", href: "/purchases" },
       { label: "Pre Auth", href: "/purchases/purchase-orders" },
       { label: "BDMP", href: "/purchases/suppliers" },
     ],
   },
-  { label: "NCD Screening", href: "/banking", icon: Landmark,
+  {
+    label: "NCD Screening",
+    href: "/banking",
+    icon: NcdScreeningIcon,
     children: [
       { label: "Composit Score", href: "/banking/accounts" },
       { label: "Login", href: "/banking/feed" },
@@ -68,14 +87,20 @@ export const navItems: NavItem[] = [
       { label: "Follow Up", href: "/banking/statements" },
     ],
   },
-  { label: "DVDMS", href: "/expenses", icon: Receipt,
+  {
+    label: "DVDMS",
+    href: "/expenses",
+    icon: DvdmsIcon,
     children: [
       { label: "Indent Recieve Issue", href: "/expenses" },
       { label: "Facility EDL", href: "/expenses/categories" },
       { label: "Budget Utilization", href: "/expenses/approval-workflows" },
     ],
   },
-  { label: "iGot Karmayogi", href: "/payroll", icon: Users,
+  {
+    label: "iGot Karmayogi",
+    href: "/payroll",
+    icon: KarmayogiIcon,
     children: [
       { label: "Registered Users", href: "/payroll" },
       { label: "Course Allotment", href: "/payroll/employees" },
@@ -83,13 +108,19 @@ export const navItems: NavItem[] = [
       { label: "Last Course Complition", href: "/payroll/payslips" },
     ],
   },
-  { label: "NPPCD", href: "/inventory", icon: Package,
+  {
+    label: "NPPCD",
+    href: "/inventory",
+    icon: NppcdIcon,
     children: [
       { label: "Monthly Reporting Status", href: "/inventory" },
       { label: "Current Month Status", href: "/inventory/items" },
     ],
   },
-  { label: "UPKSK", href: "/projects", icon: FolderKanban,
+  {
+    label: "UPKSK",
+    href: "/projects",
+    icon: UpkskIcon,
     children: [
       { label: "Updation Report", href: "/projects" },
       { label: "Equipment", href: "/projects/tasks" },
@@ -97,20 +128,29 @@ export const navItems: NavItem[] = [
       { label: "Facility", href: "/projects/milestones" },
     ],
   },
-  { label: "Arogya Mela", href: "/arogyamela", icon: BarChart3,
+  {
+    label: "Arogya Mela",
+    href: "/arogyamela",
+    icon: ArogyaMelaIcon,
     children: [
       { label: "Mela Day Report", href: "/reports" },
       { label: "Chief Complaints", href: "/reports/sales" },
       { label: "Old Reports", href: "/arogyamela" },
     ],
   },
-  { label: "ABHA", href: "/tax", icon: Percent,
+  {
+    label: "ABHA",
+    href: "/tax",
+    icon: AbhaIcon,
     children: [
       { label: "eKavach ABHA", href: "/tax" },
       { label: "UWIN Bal ABHA", href: "/tax/gst" },
     ],
   },
-  { label: "Medlepar", href: "/tax/tds", icon: Percent,
+  {
+    label: "Medlepar",
+    href: "/tax/tds",
+    icon: MedleparIcon,
     children: [
       { label: "Post Martem", href: "/tax/tds" },
       { label: "Medico Legal", href: "/tax/tds/deductors" },
@@ -118,15 +158,18 @@ export const navItems: NavItem[] = [
       { label: "Facility Doctor", href: "/tax/tds-returns" },
     ],
   },
-  { label: "NPCB", href: "/contacts", icon: Contact,
+  {
+    label: "NPCB",
+    href: "/contacts",
+    icon: NpcbIcon,
     children: [
       { label: "Report", href: "/contacts" },
     ],
   },
-]
+];
 
 export const bottomNavItems: NavItem[] = [
-  { label: "Settings", href: "/settings", icon: Settings },
-  { label: "Integrations", href: "/integrations", icon: Puzzle },
-  { label: "Help & Support", href: "/help", icon: HelpCircle },
-]
+  { label: "Settings", href: "/settings", icon: SettingsPortalIcon },
+  { label: "Integrations", href: "/integrations", icon: IntegrationsIcon },
+  { label: "Help & Support", href: "/help", icon: HelpSupportIcon },
+];
