@@ -2,7 +2,7 @@
 import { NavLink, useLocation } from "react-router-dom"
 import { Sparkles, LogIn, UserPlus } from "lucide-react"
 
-import { navItems, bottomNavItems, type NavChild } from "@/lib/nav"
+import { navItems, type NavChild } from "@/lib/nav"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { DialogTrigger } from "@/components/ui/dialog"
@@ -31,21 +31,21 @@ function Logo() {
           </linearGradient>
         </defs>
       </svg>
+
       <span className="text-lg font-bold tracking-tight text-foreground">
-        Finovo
+        Ayodhya Health
       </span>
     </div>
   )
 }
 
-// Exact route matching prevents /tax from matching /tax/tds.
+// Exact route matching.
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
   return pathname === href
 }
 
-// Check whether a menu or one of its actual descendants
-// matches the current route.
+// Check whether a route belongs to a menu or its descendants.
 function subtreeActive(
   pathname: string,
   node: { href: string; children?: NavChild[] }
@@ -59,6 +59,7 @@ function subtreeActive(
   )
 }
 
+// Render nested submenu items.
 function NavChildItem({
   child,
   pathname,
@@ -113,6 +114,7 @@ function NavChildItem({
   )
 }
 
+// Main sidebar content.
 function NavContent({
   onNavigate,
 }: {
@@ -120,8 +122,7 @@ function NavContent({
 }) {
   const { pathname } = useLocation()
 
-  // Find all matching top-level menus.
-  // Keep only the most specific matching menu open.
+  // Find the most specific matching top-level menu.
   const activeItem = navItems
     .filter((item) => subtreeActive(pathname, item))
     .sort((a, b) => b.href.length - a.href.length)[0]
@@ -131,9 +132,9 @@ function NavContent({
       <Logo />
 
       <nav className="flex-1 overflow-y-auto px-3 pb-2">
+        {/* Main health portal navigation */}
         <ul className="flex flex-col gap-0.5">
           {navItems.map((item) => {
-            // Only one top-level menu can expand.
             const active = activeItem?.href === item.href
 
             const showChildren =
@@ -179,42 +180,11 @@ function NavContent({
           })}
         </ul>
 
-        <div className="my-3 h-px bg-sidebar-border" />
-
-        <ul className="flex flex-col gap-0.5">
-          {bottomNavItems.map((item) => {
-            const active = isActive(pathname, item.href)
-
-            return (
-              <li key={item.href}>
-                <NavLink
-                  to={item.href}
-                  onClick={onNavigate}
-                  className={cn(
-                    "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                    active
-                      ? "bg-sidebar-active-bg text-sidebar-active-foreground"
-                      : "text-sidebar-foreground hover:bg-muted"
-                  )}
-                >
-                  <item.icon
-                    className="size-4 shrink-0"
-                    strokeWidth={2}
-                  />
-
-                  <span className="truncate">
-                    {item.label}
-                  </span>
-                </NavLink>
-              </li>
-            )
-          })}
-        </ul>
-
+        {/* Authentication navigation */}
         <div className="my-3 h-px bg-sidebar-border" />
 
         <p className="text-muted-foreground px-3 pb-1 text-[11px] font-semibold tracking-wide uppercase">
-          Preview: Auth Pages
+          Authentication
         </p>
 
         <ul className="flex flex-col gap-0.5">
@@ -242,10 +212,12 @@ function NavContent({
         </ul>
       </nav>
 
+      {/* Upgrade section */}
       <div className="p-3">
         <div className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/10 to-primary/[0.03] p-3.5">
           <div className="mb-1.5 flex items-center gap-1.5">
             <Sparkles className="size-4 text-primary" />
+
             <span className="text-sm font-semibold text-foreground">
               Upgrade to Pro
             </span>
@@ -268,6 +240,7 @@ function NavContent({
   )
 }
 
+// Desktop sidebar.
 export function Sidebar() {
   return (
     <aside className="bg-sidebar border-sidebar-border sticky top-0 hidden h-svh w-64 shrink-0 border-r lg:block">
@@ -276,6 +249,7 @@ export function Sidebar() {
   )
 }
 
+// Mobile sidebar.
 export function SidebarMobileContent({
   onNavigate,
 }: {
