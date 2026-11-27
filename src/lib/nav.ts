@@ -20,7 +20,7 @@ import {
   HelpSupportIcon,
 } from "../components/icons/custom-icons";
 
-type PortalIcon = ComponentType<SVGProps<SVGSVGElement>>;
+export type PortalIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 export interface NavChild {
   label: string;
@@ -36,11 +36,8 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  {
-    label: "Dashboard",
-    href: "/",
-    icon: DashboardIcon,
-  },
+  { label: "Dashboard", href: "/", icon: DashboardIcon },
+
   {
     label: "Immunization",
     href: "/accounting",
@@ -52,6 +49,7 @@ export const navItems: NavItem[] = [
       { label: "Wastage Report", href: "/wastagereport" },
     ],
   },
+
   {
     label: "Delivery",
     href: "/sales",
@@ -65,6 +63,7 @@ export const navItems: NavItem[] = [
       { label: "JSY Payment", href: "/sales/products" },
     ],
   },
+
   {
     label: "Ayushman Bharat",
     href: "/purchases",
@@ -75,6 +74,7 @@ export const navItems: NavItem[] = [
       { label: "BDMP", href: "/purchases/suppliers" },
     ],
   },
+
   {
     label: "NCD Screening",
     href: "/banking",
@@ -87,6 +87,7 @@ export const navItems: NavItem[] = [
       { label: "Follow Up", href: "/banking/statements" },
     ],
   },
+
   {
     label: "DVDMS",
     href: "/expenses",
@@ -97,6 +98,7 @@ export const navItems: NavItem[] = [
       { label: "Budget Utilization", href: "/expenses/approval-workflows" },
     ],
   },
+
   {
     label: "iGot Karmayogi",
     href: "/payroll",
@@ -108,6 +110,7 @@ export const navItems: NavItem[] = [
       { label: "Last Course Complition", href: "/payroll/payslips" },
     ],
   },
+
   {
     label: "NPPCD",
     href: "/inventory",
@@ -117,6 +120,7 @@ export const navItems: NavItem[] = [
       { label: "Current Month Status", href: "/inventory/items" },
     ],
   },
+
   {
     label: "UPKSK",
     href: "/projects",
@@ -128,6 +132,7 @@ export const navItems: NavItem[] = [
       { label: "Facility", href: "/projects/milestones" },
     ],
   },
+
   {
     label: "Arogya Mela",
     href: "/arogyamela",
@@ -138,6 +143,7 @@ export const navItems: NavItem[] = [
       { label: "Old Reports", href: "/arogyamela" },
     ],
   },
+
   {
     label: "ABHA",
     href: "/tax",
@@ -147,6 +153,7 @@ export const navItems: NavItem[] = [
       { label: "UWIN Bal ABHA", href: "/tax/gst" },
     ],
   },
+
   {
     label: "Medlepar",
     href: "/tax/tds",
@@ -158,6 +165,7 @@ export const navItems: NavItem[] = [
       { label: "Facility Doctor", href: "/tax/tds-returns" },
     ],
   },
+
   {
     label: "NPCB",
     href: "/contacts",
@@ -166,4 +174,10 @@ export const navItems: NavItem[] = [
       { label: "Report", href: "/contacts" },
     ],
   },
+];
+
+export const bottomNavItems: NavItem[] = [
+  { label: "Settings", href: "/settings", icon: SettingsPortalIcon },
+  { label: "Integrations", href: "/integrations", icon: IntegrationsIcon },
+  { label: "Help & Support", href: "/help", icon: HelpSupportIcon },
 ];
