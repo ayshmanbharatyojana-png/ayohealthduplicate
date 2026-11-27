@@ -8,7 +8,7 @@ import { JournalEntries } from "@/pages/accounting/JournalEntries"
 import { ComingSoon } from "@/pages/ComingSoon"
 import { UWINDailySession } from "@/pages/UWINDailySession"
 import { ArogyaMela } from "@/pages/ArogyaMela/ArogyaMela"
-import { DigitalHealthABHA } from "@/pages/DigitalHealth&ABHA/eKavachABHA"
+import { DigitalHealthABHA } from "@/pages/DigitalHealthABHA/eKavachABHA"
 
 import { Invoices } from "@/pages/sales/Invoices"
 import { InvoiceDetail } from "@/pages/sales/InvoiceDetail"
