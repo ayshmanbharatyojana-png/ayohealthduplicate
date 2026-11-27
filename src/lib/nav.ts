@@ -110,22 +110,19 @@ export const navItems: NavItem[] = [
       { label: "UWIN Bal ABHA", href: "/tax/gst" },
     ],
   },
-   { label: "Medlepar", href: "/tax/tds", icon: Percent,
+  { label: "Medlepar", href: "/tax/tds", icon: Percent,
     children: [
       { label: "Post Martem", href: "/tax/tds" },
       { label: "Medico Legal", href: "/tax/tds/deductors" },
       { label: "Doctor wise Status", href: "/tax/tds/deductees" },
       { label: "Facility Doctor", href: "/tax/tds-returns" },
     ],
-   },
- ],
-},
+  },
   { label: "NPCB", href: "/contacts", icon: Contact,
     children: [
       { label: "Report", href: "/contacts" },
     ],
   },
-]
 
 export const bottomNavItems: NavItem[] = [
   { label: "Settings", href: "/settings", icon: Settings },
