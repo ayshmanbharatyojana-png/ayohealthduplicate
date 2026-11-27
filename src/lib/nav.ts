@@ -167,9 +167,3 @@ export const navItems: NavItem[] = [
     ],
   },
 ];
-
-export const bottomNavItems: NavItem[] = [
-  { label: "Settings", href: "/settings", icon: SettingsPortalIcon },
-  { label: "Integrations", href: "/integrations", icon: IntegrationsIcon },
-  { label: "Help & Support", href: "/help", icon: HelpSupportIcon },
-];
