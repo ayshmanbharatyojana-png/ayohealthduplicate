@@ -102,8 +102,8 @@ export const navItems: NavItem[] = [
     children: [
       { label: "Registered Users", href: "/payroll" },
       { label: "Course Allotment", href: "/payroll/employees" },
-      { label: "Course Complition", href: "/payroll/runs" },
-      { label: "Last Course Complition", href: "/payroll/payslips" },
+      { label: "Course Completion", href: "/payroll/runs" },
+      { label: "Last Completion Date", href: "/payroll/payslips" },
     ],
   },
 
