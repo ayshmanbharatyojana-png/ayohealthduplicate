@@ -207,20 +207,6 @@ function NavContent({
           </li>
         </ul>
       </nav>
-
-          <p className="mb-3 text-xs text-muted-foreground">
-            Unlock advanced features, workflows and custom reports.
-          </p>
-
-          <UpgradeDialog>
-            <DialogTrigger asChild>
-              <Button size="sm" className="w-full">
-                Upgrade Now
-              </Button>
-            </DialogTrigger>
-          </UpgradeDialog>
-        </div>
-      </div>
     </div>
   )
 }
