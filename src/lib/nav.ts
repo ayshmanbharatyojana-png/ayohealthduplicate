@@ -54,9 +54,6 @@ export const navItems: NavItem[] = [
     href: "/sales",
     icon: DeliveryIcon,
     children: [
-      { label: "MaNTrA", href: "/sales" },
-      { label: "HMIS", href: "/sales/estimates" },
-      { label: "UWIN", href: "/sales/credit-notes" },
       { label: "HMIS vs MaNTrA vs UWIN", href: "/sales/customers" },
       { label: "Birth Dose", href: "/sales/payments" },
       { label: "JSY Payment", href: "/sales/products" },
