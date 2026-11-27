@@ -1,184 +1,131 @@
-import { Wallet, CheckCircle2, FileWarning, CalendarClock, Landmark } from "lucide-react"
+<div className="flex items-center gap-2 font-bold text-slate-800"><Filter size={17} className="text-blue-600" /> Report filters</div>
+            <button onClick={clearFilters} className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700 hover:text-blue-900"><X size={14} /> Reset filters</button>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <label className="text-xs font-semibold text-slate-600">Unit / UPHC
+              <select value={unitFilter} onChange={(e) => { setUnitFilter(e.target.value); setSubCentreFilter("All"); setVillageFilter("All"); setAshaFilter("All"); }} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-blue-500">
+                <option value="All">All Units</option>{units.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </label>
+            <label className="text-xs font-semibold text-slate-600">Sub-Centre / Ward
+              <select value={subCentreFilter} onChange={(e) => { setSubCentreFilter(e.target.value); setVillageFilter("All"); setAshaFilter("All"); }} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-blue-500">
+                <option value="All">All Sub-Centres</option>{subCentres.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </label>
+            <label className="text-xs font-semibold text-slate-600">Village / Mohalla
+              <select value={villageFilter} onChange={(e) => { setVillageFilter(e.target.value); setAshaFilter("All"); }} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-blue-500">
+                <option value="All">All Villages</option>{villages.map((value) => <option key={value}>{value}</option>)}
+              </select>
+            </label>
+            <label className="text-xs font-semibold text-slate-600">ASHA worker
+              <select value={ashaFilter} onChange={(e) => setAshaFilter(e.target.value)} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-blue-500">
+                <option value="All">All ASHA workers</option>{ashaNames.map((value) => <option key={value} value={value}>{value.split("|||")[1]} · {value.split("|||")[0]}</option>)}
+              </select>
+            </label>
+          </div>
+        </section>
 
-import { PageHeader } from "@/components/shared/PageHeader"
-import { StatCard } from "@/components/shared/StatCard"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { ComparisonBarChart, DonutChart } from "@/components/shared/charts"
-import { inr } from "@/lib/format"
+        <section className="no-print flex gap-2 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-sm">
+          {modules.map(({ id, label, icon: Icon }) => (
+            <button key={id} onClick={() => { setActiveModule(id); setSearch(""); }} className={`inline-flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition ${activeModule === id ? "bg-[#10243b] text-white shadow" : "text-slate-600 hover:bg-slate-100"}`}>
+              <Icon size={16} /> {label}
+            </button>
+          ))}
+        </section>
 
-const tdsTrend = [
-  { m: "Jan", deducted: 285000, deposited: 285000 },
-  { m: "Feb", deducted: 298000, deposited: 298000 },
-  { m: "Mar", deducted: 312500, deposited: 305000 },
-  { m: "Apr", deducted: 305600, deposited: 305600 },
-  { m: "May", deducted: 320450, deposited: 296000 },
-]
+        {activeModule === "overview" ? (
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm xl:col-span-2">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div><h2 className="font-bold text-slate-900">Unit / UPHC coverage</h2><p className="text-xs text-slate-500">Ranked by ABHA coverage percentage</p></div>
+                <span className="rounded-lg bg-blue-50 px-2.5 py-1.5 text-xs font-bold text-blue-700">{unitRows.length} units</span>
+              </div>
+              <div className="space-y-4">
+                {unitRows.map((row) => (
+                  <button key={row.key} onClick={() => { setUnitFilter(row.name); setActiveModule("unit"); }} className="w-full text-left">
+                    <div className="mb-1.5 flex items-center justify-between gap-3">
+                      <span className="truncate text-sm font-semibold text-slate-700">{row.name}</span>
+                      <span className="text-xs font-bold tabular-nums text-slate-700">{formatPercent(row.coverage)}</span>
+                    </div>
+                    <div className="h-2.5 overflow-hidden rounded-full bg-slate-100"><div className={`h-full rounded-full ${row.coverage >= 65 ? "bg-emerald-500" : row.coverage >= 40 ? "bg-amber-500" : "bg-rose-500"}`} style={{ width: `${Math.min(100, row.coverage)}%` }} /></div>
+                    <p className="mt-1 text-[11px] text-slate-500">{formatNumber(row.abhaCreated)} created of {formatNumber(row.population)}</p>
+                  </button>
+                ))}
+              </div>
+            </section>
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h2 className="font-bold text-slate-900">ABHA Created vs Remaining</h2>
+              <p className="mb-4 text-xs text-slate-500">Donut chart · updates with report filters</p>
+              <AbhaDonutChart created={totals.abhaCreated} remaining={totals.remaining} coverage={totals.coverage} />
+              <div className="mt-7 rounded-xl bg-slate-50 p-3">
+                <p className="text-xs font-semibold text-slate-500">Records in current selection</p>
+                <p className="mt-1 text-2xl font-bold text-slate-900">{formatNumber(filteredRecords.length)}</p>
+                <p className="mt-1 text-xs text-slate-500">{formatNumber(uniqueAsaCount)} distinct ASHA IDs in selection</p>
+              </div>
+            </section>
+          </div>
+        ) : (
+          <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex flex-col gap-3 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div><h2 className="text-lg font-bold text-slate-900">{activeModule === "reports" ? "Consolidated PDF report" : `${moduleTitle} report`}</h2><p className="mt-1 text-xs text-slate-500">Aggregated from {formatNumber(filteredRecords.length)} source rows in eKavachABHA.csv</p></div>
+              <div className="no-print flex flex-wrap gap-2">
+                <div className="relative">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search this report" className="w-56 rounded-xl border border-slate-200 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-blue-500" />
+                </div>
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)} className="rounded-xl border border-slate-200 px-3 py-2 text-sm text-slate-700">
+                  <option value="coverage">Sort: Coverage</option><option value="population">Sort: Population</option><option value="abhaCreated">Sort: ABHA created</option><option value="name">Sort: Name</option>
+                </select>
+                <button onClick={printReport} className="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-800"><FileText size={15} /> Save PDF</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3 border-b border-slate-100 p-5 lg:grid-cols-4">
+              <div><p className="text-xs text-slate-500">Population</p><p className="mt-1 font-bold text-slate-900">{formatNumber(totals.population)}</p></div>
+              <div><p className="text-xs text-slate-500">ABHA created</p><p className="mt-1 font-bold text-emerald-700">{formatNumber(totals.abhaCreated)}</p></div>
+              <div><p className="text-xs text-slate-500">Remaining</p><p className="mt-1 font-bold text-amber-700">{formatNumber(totals.remaining)}</p></div>
+              <div><p className="text-xs text-slate-500">Coverage</p><p className="mt-1 font-bold text-slate-900">{formatPercent(totals.coverage)}</p></div>
+            </div>
+            {renderTable(visibleRows, activeModule === "unit" ? "Unit / UPHC" : activeModule === "subcentre" ? "Sub-Centre / Ward" : activeModule === "village" ? "Village / Mohalla" : activeModule === "asha" ? "ASHA ID / Worker" : "Unit / UPHC")}
+            <div className="border-t border-slate-100 px-5 py-3 text-xs text-slate-500">Showing {formatNumber(visibleRows.length)} grouped rows · Coverage = ABHA Created ÷ Population × 100</div>
+          </section>
+        )}
 
-const otherTaxes = [
-  { label: "Professional Tax", value: 22400, sub: "128 employees", status: "Paid" },
-  { label: "Provident Fund (PF)", value: 132450, sub: "Employer + Employee", status: "Paid" },
-  { label: "ESI Contribution", value: 48750, sub: "Employer + Employee", status: "Paid" },
-  { label: "Advance Tax (Q4)", value: 95816, sub: "Due 15 Mar 2025", status: "Pending" },
-]
+        {activeModule === "reports" && (
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 className="font-bold text-slate-900">Available PDF reports</h3>
+            <p className="mt-1 text-sm text-slate-500">Select a reporting module above, apply filters and choose Export PDF. The browser print dialog lets you save the report as a PDF.</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {modules.filter((m) => m.id !== "overview" && m.id !== "reports").map((m) => (
+                <button key={m.id} onClick={() => setActiveModule(m.id)} className="flex items-center gap-3 rounded-xl border border-slate-200 p-3 text-left hover:border-blue-300 hover:bg-blue-50/50">
+                  <m.icon className="text-blue-700" size={20} /><span className="text-sm font-semibold text-slate-700">{m.label}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
 
-const gstTrend = [
-  { m: "Jan", output: 2800000, input: 2100000 },
-  { m: "Feb", output: 2950000, input: 2200000 },
-  { m: "Mar", output: 3100000, input: 2150000 },
-  { m: "Apr", output: 3050000, input: 2180000 },
-  { m: "May", output: 3245600, input: 2215300 },
-]
-
-const deadlines = [
-  { date: "07 Jun", label: "GSTR-1 (May 2025)", sub: "Sales details return", tag: "Due in 5 days" },
-  { date: "11 Jun", label: "GSTR-3B (May 2025)", sub: "Summary return", tag: "Due in 9 days" },
-  { date: "20 Jun", label: "GSTR-9 (FY 2024-25)", sub: "Annual return", tag: "Due in 18 days" },
-  { date: "25 Jun", label: "GST Payment (May 2025)", sub: "Tax payment due", tag: "Due in 23 days" },
-]
-
-export function DigitalHealthABHA() {
-  return (
-    <div>
-      <PageHeader
-        crumbs={[{ label: "Tax" }, { label: "Overview" }]}
-        title="Tax Overview"
-        description="Manage your GST, TDS, and other tax compliances in one place."
-        actions={<Button variant="outline">Financial Year 2024-25</Button>}
-      />
-
-      <div className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <StatCard icon={Wallet} label="Total Tax Payable" value={inr(645250)} delta={{ value: "8.4%" }} color="purple" />
-        <StatCard icon={CheckCircle2} label="Paid This Year" value={inr(1875300)} delta={{ value: "12.1%" }} color="green" />
-        <StatCard icon={FileWarning} label="Pending Returns" value="05" color="orange" />
-        <StatCard icon={CalendarClock} label="Upcoming Deadlines" value="07" color="blue" />
-        <StatCard icon={Landmark} label="Refunds Receivable" value={inr(125340)} color="green" className="col-span-2 lg:col-span-1" />
+        <footer className="no-print flex flex-col gap-1 border-t border-slate-200 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <span>Ayodhya Integrated Health Portal · eKavach ABHA</span>
+          <span>Source: public/data/eKavachABHA.csv · {formatNumber(records.length)} rows loaded</span>
+        </footer>
       </div>
 
-      <Card>
-        <CardContent className="pt-5">
-          <Tabs defaultValue="gst">
-            <TabsList>
-              <TabsTrigger value="gst">GST Overview</TabsTrigger>
-              <TabsTrigger value="tds">TDS Overview</TabsTrigger>
-              <TabsTrigger value="other">Other Taxes</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="gst">
-              <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">
-                <Card className="xl:col-span-2">
-                  <CardHeader><CardTitle>GST Liability Trend</CardTitle></CardHeader>
-                  <CardContent className="pb-5">
-                    <ComparisonBarChart
-                      data={gstTrend}
-                      xKey="m"
-                      series={[
-                        { key: "output", color: "var(--color-chart-1)", label: "Output Tax" },
-                        { key: "input", color: "var(--color-chart-2)", label: "Input Tax" },
-                      ]}
-                    />
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader><CardTitle>Return Filing Status</CardTitle></CardHeader>
-                  <CardContent className="flex flex-col items-center gap-2 pb-5">
-                    <DonutChart
-                      data={[
-                        { name: "Filed", value: 14, color: "var(--color-chart-2)" },
-                        { name: "Pending", value: 5, color: "var(--color-chart-3)" },
-                        { name: "Overdue", value: 3, color: "var(--color-chart-5)" },
-                        { name: "N/A", value: 2, color: "var(--color-chart-1)" },
-                      ]}
-                      total="24"
-                      totalLabel="Total Returns"
-                      size={150}
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="tds">
-              <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">
-                <Card className="xl:col-span-2">
-                  <CardHeader><CardTitle>TDS Deducted vs Deposited</CardTitle></CardHeader>
-                  <CardContent className="pb-5">
-                    <ComparisonBarChart
-                      data={tdsTrend}
-                      xKey="m"
-                      series={[
-                        { key: "deducted", color: "var(--color-chart-1)", label: "Deducted" },
-                        { key: "deposited", color: "var(--color-chart-2)", label: "Deposited" },
-                      ]}
-                    />
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader><CardTitle>Return Filing Status</CardTitle></CardHeader>
-                  <CardContent className="flex flex-col items-center gap-2 pb-5">
-                    <DonutChart
-                      data={[
-                        { name: "Filed", value: 3, color: "var(--color-chart-2)" },
-                        { name: "Draft", value: 1, color: "var(--color-chart-3)" },
-                      ]}
-                      total="4"
-                      totalLabel="Quarterly Returns"
-                      size={150}
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="other">
-              <div className="mt-5 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-muted-foreground border-b text-left text-xs">
-                      <th className="pb-2 font-medium">Tax / Contribution</th>
-                      <th className="pb-2 font-medium">Details</th>
-                      <th className="pb-2 text-right font-medium">Amount (₹)</th>
-                      <th className="pb-2 font-medium">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {otherTaxes.map((t) => (
-                      <tr key={t.label} className="border-b last:border-0">
-                        <td className="py-3 font-medium whitespace-nowrap text-foreground">{t.label}</td>
-                        <td className="text-muted-foreground py-3 whitespace-nowrap">{t.sub}</td>
-                        <td className="py-3 text-right whitespace-nowrap text-foreground">{inr(t.value, { decimals: true })}</td>
-                        <td className="py-3">
-                          <span className={t.status === "Paid" ? "text-success-foreground text-xs font-medium" : "text-warning-foreground text-xs font-medium"}>{t.status}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </TabsContent>
-          </Tabs>
-
-          <Card className="mt-5">
-            <CardHeader><CardTitle>Upcoming Deadlines</CardTitle></CardHeader>
-            <CardContent className="grid grid-cols-1 gap-3 pb-5 sm:grid-cols-2 lg:grid-cols-4">
-              {deadlines.map((d) => (
-                <div key={d.label} className="flex gap-3 rounded-lg border p-3">
-                  <div className="bg-info-bg text-info-foreground flex size-11 shrink-0 flex-col items-center justify-center rounded-lg text-xs font-bold leading-none">
-                    <span className="text-sm">{d.date.split(" ")[0]}</span>
-                    <span>{d.date.split(" ")[1]}</span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-foreground">{d.label}</p>
-                    <p className="text-muted-foreground text-xs">{d.sub}</p>
-                    <p className="text-warning-foreground text-xs font-medium">{d.tag}</p>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </CardContent>
-      </Card>
+      <style>{`
+        @media print {
+          @page { size: landscape; margin: 12mm; }
+          body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .no-print { display: none !important; }
+          main { padding: 0 !important; }
+          body * { visibility: hidden; }
+          #root, #root * { visibility: visible; }
+          #root { position: absolute; inset: 0; width: 100%; }
+          table { font-size: 9pt !important; }
+          tr { break-inside: avoid; }
+          .shadow-sm, .shadow-lg { box-shadow: none !important; }
+        }
+      `}</style>
     </div>
-  )
+  );
 }
+
+export default DigitalHealthABHA;
