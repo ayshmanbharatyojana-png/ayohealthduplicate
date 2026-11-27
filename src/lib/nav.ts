@@ -123,6 +123,7 @@ export const navItems: NavItem[] = [
       { label: "Report", href: "/contacts" },
     ],
   },
+]
 
 export const bottomNavItems: NavItem[] = [
   { label: "Settings", href: "/settings", icon: Settings },
